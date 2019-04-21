@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/jquery.min.js"></script>
+    <style>
+        .login {
+            width: 50%;
+            background-color: pink;
+            border: 1px;
+            margin: 100px  auto;
+            height: 400px;
+            text-align: center;
+        }
+        .login table {
+            height: 400px;
+            width: 50%;
+            margin: auto auto;
+            padding: 30px 0px;
+        }
+        .login td {
+            text-align: center;
+        }
+        .login #login {
+            position: relative;
+            left: -42px;
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+    <script>
+        $().ready(function() {
+            $("#login").click(function() {
+                var user = $("#userName").val();
+                var password = $("#password").val();
+                // alert(user, password);
+                var url = "/login";
+                $.post(
+                    url,
+                    {"user": user, "password": password},
+                    function(result) {
+                        if (result == 1)
+                            window.location.href = "/index.html";
+                        else
+                            window.location.href = "/login.html";
+                    }
+                );
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="login">
+    <form action="">
+        <table>
+            <tr>
+                <td colspan="2">
+                    <img src="img/th.jpg" alt="" width="200px" height="100px">
+                </td>
+            </tr>
+            <tr>
+                <td>用户名:</td>
+                <td><input type="text" name="userName" id="userName"></td>
+            </tr>
+            <tr>
+                <td>密码:</td>
+                <td>
+                    <input type="password" name="password" id="password">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <!--使用ajax提交表单的时候, 这里不可以是submit按钮-->
+                    <input type="button" value="登录" id="login" width="300px">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

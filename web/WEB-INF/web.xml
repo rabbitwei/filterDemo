@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<web-app>
+    <servlet>
+        <servlet-name>PrintTestServlet</servlet-name>
+        <servlet-class>PrintTestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PrintTestServlet</servlet-name>
+        <url-pattern>/print</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>controller.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+
+
+    <!--配置过滤器, 和servlet配置一样-->
+    <filter>
+        <filter-name>FirstFilter</filter-name>
+        <filter-class>filter.FirstFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FirstFilter</filter-name>
+        <url-pattern>/date.jsp</url-pattern>   <!-- /* : 表示所有的访问都会过滤-->
+        <!--
+            如果配置成 -====-> <url-pattern>*.jsp</url-pattern>
+            就表示只过滤jsp
+        -->
+    </filter-mapping>
+
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>filter.EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>       <!--处理所有页面-->
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>filter.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>
